@@ -1,0 +1,69 @@
+<div class="block2">
+    <div class="fixed-bg" style="background-image: url('assets/images/topbg.jpg');background-size: cover;"></div>
+    <div class="page-title-wrapper text-center">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="page-title-inner">
+                <h1 itemprop="headline">Our Menu</h1>
+                <span>A Great Restaurant Website</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block">
+    <section>
+        <div class="container">
+            <form id="menu-form" (ngSubmit)="confirmOrder()">
+                <input type="hidden" name="RestaurantId" [value]="restaurantId">
+                <div class="row" id="menu-items">
+                    <div *ngIf="menuItems.length === 0" class="text-center">
+                        <p>No menu items found for this restaurant.</p>
+                    </div>
+                    <div *ngFor="let item of paginatedMenuItems" class="col-md-4 col-sm-6 col-lg-4 restaurant-item">
+                        <div class="popular-dish-box style2">
+                            <div class="popular-dish-thumb">
+                                <a href="#" title="" itemprop="url">
+                                    <img [src]="'/' + item.menuItemImage" [alt]="item.name" itemprop="image">
+                                </a>
+                            </div>
+                            <div class="popular-dish-info">
+                                <h4 itemprop="headline">
+                                    <a href="" title="" itemprop="url">{{ item.name }}</a>
+                                </h4>
+                                <p itemprop="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                                <span class="price">${{ item.price }}</span>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" [id]="'item-' + item.menuItemId" (change)="onCheckboxChange(item.menuItemId)">
+                                    <label [for]="'item-' + item.menuItemId">Choose this item</label>
+                                </div>
+                            </div>
+                        </div><!-- Popular Dish Box -->
+                    </div>
+                </div>
+
+                <!-- Buttons and Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div class="pagination-wrapper text-center mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item prev" [ngClass]="{ 'disabled': currentPage === 1 }">
+                                <a class="page-link brd-rd2" (click)="changePage(currentPage - 1)">PREVIOUS</a>
+                            </li>
+                            <li *ngFor="let page of pages" [ngClass]="{ 'active': page === currentPage }" class="page-item">
+                                <a class="page-link brd-rd2" (click)="changePage(page)">{{ page }}</a>
+                            </li>
+                            <li class="page-item next" [ngClass]="{ 'disabled': currentPage === totalPages }">
+                                <a class="page-link brd-rd2" (click)="changePage(currentPage + 1)">NEXT</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center w-100 mt-3">
+                    <a [routerLink]="['/restaurant']" [queryParams]="{ cityId: cityId }" class="btn btn-process mb-5" id="back-btn-sm">Back</a>
+                    <button [routerLink]="['/customer-details']" class="btn btn-process mb-5" id="continue-order-btn" [disabled]="!selectedItems.length">Continue</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+

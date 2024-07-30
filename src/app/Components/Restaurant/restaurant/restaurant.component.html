@@ -1,0 +1,84 @@
+
+
+<section>
+  <div class="block2">
+      <div class="fixed-bg" style="background-image: url('/assets/images/topbg.jpg'); background-size: cover;"></div>
+      <div class="page-title-wrapper text-center">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+              <div class="page-title-inner">
+                  <h1 itemprop="headline">Search Found</h1>
+                  <span>A Great Restaurant Website</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<div class="block">
+  <section>
+      <div class="row justify-content-center">
+          <div class="col-md-9 col-sm-12 col-lg-9">
+              <div class="title2-wrapper text-center">
+                  <h3 class="marginb-0" itemprop="headline">Order food online in {{ restaurants.length > 0 ? restaurants[0].cityName : 'Searched Area' }}</h3>
+              </div>
+              <div class="remove-ext" style="width: 100%;">
+                  <div class="row" id="restaurant-list">
+                      <div *ngIf="restaurants.length === 0" class="text-center">
+                          <p>No restaurants found in this city.</p>
+                      </div>
+                      <div *ngFor="let restaurant of paginatedRestaurants" class="col-md-4 col-sm-6 col-lg-4 restaurant-item">
+                          <div class="featured-restaurant-box with-bg style2 brd-rd12">
+                              <div class="featured-restaurant-thumb">
+                                  <a href="#" title="" itemprop="url">
+                                      <img class="restaurant-image" [src]="'/' + restaurant.restaurantImage" [alt]="restaurant.name" itemprop="image">
+                                  </a>
+                              </div>
+                              <div class="d-block">
+                                  <div class="featured-restaurant-info">
+                                      <span class="red-clr">{{ restaurant.cityName }}</span>
+                                      <h4 itemprop="headline">
+                                          <a href="#" title="" itemprop="url">{{ restaurant.name }}</a>
+                                      </h4>
+                                      <span class="food-types">Type of food: <a href="#" title="" itemprop="url">Apple Juice</a>, <a href="#" title="" itemprop="url">BB.Q</a></span>
+                                      <ul class="post-meta">
+                                          <li><i class="fa fa-check-circle-o"></i> Min order $50</li>
+                                          <li><i class="flaticon-transport"></i> 30min</li>
+                                          <li><i class="flaticon-money"></i> Accepts cash &amp; online payments</li>
+                                      </ul>
+                                      <span class="post-rate yellow-bg brd-rd2"><i class="fa fa-star-o"></i> 4.25</span>
+                                      <span class="post-likes style2 red-clr"><i class="fa fa-heart-o"></i> 12</span>
+                                      <a class="brd-rd30" [routerLink]="['/menu', restaurant.restaurantId]" title="See the menu">
+                                          <i class="fa fa-angle-double-right"></i>MENU
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Buttons and Pagination -->
+              <div class="d-flex justify-content-between align-items-center mt-5">
+                  <div class="pagination-wrapper text-center mt-4 flex-grow-1">
+                      <ul class="pagination justify-content-center" id="pagination">
+                          <li class="page-item prev" [class.disabled]="isPreviousDisabled">
+                              <a class="page-link brd-rd2" href="#" (click)="changePage(currentPage - 1)" *ngIf="!isPreviousDisabled">PREVIOUS</a>
+                              <span class="page-link brd-rd2" *ngIf="isPreviousDisabled">PREVIOUS</span>
+                          </li>
+                          <li class="page-item" *ngFor="let page of pageNumbers" [class.active]="page === currentPage">
+                              <a class="page-link brd-rd2" href="#" (click)="changePage(page)">{{ page }}</a>
+                          </li>
+                          <li class="page-item next" [class.disabled]="isNextDisabled">
+                              <a class="page-link brd-rd2" href="#" (click)="changePage(currentPage + 1)" *ngIf="!isNextDisabled">NEXT</a>
+                              <span class="page-link brd-rd2" *ngIf="isNextDisabled">NEXT</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <a [routerLink]="['/']" class="btn btn-process d-none d-lg-block col-1" id="back-btn">Back</a>
+              <div class="d-flex justify-content-center align-items-center mt-5">
+                  <a [routerLink]="['/']" class="btn btn-process d-block d-lg-none w-40 mb-5" id="back-btn">Back</a>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>

@@ -1,0 +1,172 @@
+.row > * {
+    padding-right: calc(var(--bs-gutter-x)) !important;
+    padding-left: calc(var(--bs-gutter-x)) !important;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.item-img{
+    height: 100% ;
+}
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-top: none;
+}
+
+.table input[type="text"] {
+    text-align: center; /* Center the text inside the input */
+    max-width: 100px; /* Set maximum width */
+}
+
+.table td {
+    vertical-align: middle; /* Center content vertically */
+}
+.table tbody td {
+    vertical-align: middle;
+}
+
+.td-img{
+    height: 7rem;
+}
+
+.table tbody button {
+    border: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.btn-light {
+    border: 1px solid #ddd;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+.btn-danger {
+    background-color: transparent;
+    color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+.bg-white {
+    background-color: #fff;
+}
+
+.border {
+    border: 1px solid #dee2e6;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th {
+    border-bottom: 1px solid #ddd;
+    border-top: none;
+}
+
+.total-label {
+    border-bottom: none !important;
+}
+
+.custom-hr {
+    border: none !important;
+    border-top: 5px solid #ffc107 !important;
+    width: 4rem;
+}
+
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+.receipt-items {
+    margin-top: 20px;
+}
+
+    .receipt-items table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .receipt-items th, .receipt-items td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .receipt-items th {
+        background-color: #f8f9fa;
+    }
+
+    .receipt-items td {
+        font-size: 0.9rem;
+    }
+
+.modal-footer {
+    background-color: #f8f9fa;
+}
+
+.btn-close {
+    background-color: #f8f9fa;
+}
+
+.text-center {
+    text-align: center;
+}
+
+ .receipt-items {
+    font-size: 0.9rem;
+}
+
+.total-label{
+    font-family: 'Poppins';
+    font-size: 2rem;
+}
+
+.pricing-label{
+    font-family: monospace;
+}
+
+.price-value{
+    text-align: left;
+}
+
+
+    .table-borderless {
+border-collapse: collapse;
+}
+
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th {
+border: none !important;
+} 

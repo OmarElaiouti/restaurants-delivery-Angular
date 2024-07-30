@@ -1,0 +1,75 @@
+<div class="container wrapper mt-4">
+    <div class="row align-items-center">
+      <!-- Form Container -->
+      <div class="form-container col-md-8 mb-4">
+        <div class="bg-white p-4 rounded w-100">
+          <h2 class="mb-4">Reserve Now</h2>
+          <p class="text-muted">Please fill in your details to complete your reservation. We look forward to serving you!</p>
+          <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <div class="col-md-6 mb-3">
+                <div class="position-relative">
+                  <input formControlName="customerName" class="form-control custom-input pl-4" placeholder="Name" />
+                  <i class="fa fa-user position-absolute fa-input"></i>
+                </div>
+                <div *ngIf="customerForm.get('customerName')?.errors && (customerForm.get('customerName')?.touched || customerForm.get('customerName')?.dirty)" class="text-danger">
+                  <div *ngIf="customerForm.get('customerName')?.errors?.['required']">Name is required.</div>
+                  <div *ngIf="customerForm.get('customerName')?.errors?.['pattern']">Name cannot contain numbers.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="position-relative">
+                  <input formControlName="customerPhone" class="form-control custom-input pl-4" placeholder="Phone" />
+                  <i class="fa fa-phone position-absolute fa-input"></i>
+                </div>
+                <div *ngIf="customerForm.get('customerPhone')?.errors && (customerForm.get('customerPhone')?.touched || customerForm.get('customerPhone')?.dirty)" class="text-danger">
+                  <div *ngIf="customerForm.get('customerPhone')?.errors?.['required']">Phone is required.</div>
+                  <div *ngIf="customerForm.get('customerPhone')?.errors?.['pattern']">Phone must be a valid number.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6 mb-3">
+                <div class="position-relative">
+                  <input formControlName="customerEmail" class="form-control custom-input pl-4" placeholder="Email" />
+                  <i class="fa fa-envelope position-absolute fa-input"></i>
+                </div> 
+                <div *ngIf="customerForm.get('customerEmail')?.errors && (customerForm.get('customerEmail')?.touched || customerForm.get('customerEmail')?.dirty)" class="text-danger">
+                  <div *ngIf="customerForm.get('customerEmail')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="customerForm.get('customerEmail')?.errors?.['pattern']">Email must be valid.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="position-relative">
+                  <input formControlName="customerAddress" class="form-control custom-input pl-4" placeholder="Address" />
+                  <i class="fa-solid fa-location-dot position-absolute fa-input"></i>
+                </div>
+                <div *ngIf="customerForm.get('customerAddress')?.errors && (customerForm.get('customerAddress')?.touched || customerForm.get('customerAddress')?.dirty)" class="text-danger">
+                  <div *ngIf="customerForm.get('customerAddress')?.errors?.['required']">Address is required.</div>
+                </div>
+              </div>
+            </div>
+            <!-- Hidden fields for menu items -->
+            <input type="hidden" [value]="menuItems" #menuItemsInput />
+            <div class="d-flex justify-content-between mt-4">
+              <a [routerLink]="['/menu', restaurantId]" class="btn btn-warning custom-button">BACK</a>
+              <button type="submit" class="btn btn-warning custom-button" [disabled]="customerForm.invalid || loading">
+                {{ loading ? 'Submitting...' : 'CONFIRM' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Special Container -->
+      <div class="special-container col-md-4 mb-4">
+        <div class="bg-white p-4 rounded border border-warning w-100">
+          <h3 class="text-warning">Today's Special</h3>
+          <h4>Caesar Salad</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <img src="/assets/images/resource/restaurant-detail-big-img1-2.jpg" alt="Special dish image" class="img-fluid rounded" />
+          <h4>$12.00</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  

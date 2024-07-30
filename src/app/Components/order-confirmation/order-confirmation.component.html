@@ -1,0 +1,116 @@
+<div class="container mt-4">
+    <!-- Customer Data Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="font-weight-bold">Your Data</h2>
+            <hr class="custom-hr" />
+        </div>
+        <div class="col-md-3 mb-3 d-flex">
+            <div class="me-3"> <i class="fa fa-user fa-2x text-warning"></i></div>
+            <span><strong>Name</strong><br />{{ customerDetails.customerName }}</span>
+        </div>
+        <div class="col-md-3 mb-3 d-flex">
+            <div class="me-3">
+                <i class="fa fa-phone fa-2x text-warning"></i>
+            </div>
+            <span><strong>Phone</strong><br />{{ customerDetails.customerPhone }}</span>
+        </div>
+        <div class="col-md-3 mb-3 d-flex">
+            <div class="me-3">
+                <i class="fa fa-envelope fa-2x text-warning"></i>
+            </div>
+            <span><strong>E-mail</strong><br />{{ customerDetails.customerEmail }}</span>
+        </div>
+        <div class="col-md-3 mb-3 d-flex">
+            <div class="me-3">
+                <i class="fa fa-map-marker fa-2x text-warning"></i>
+            </div>
+            <span><strong>Address</strong><br />{{ customerDetails.customerAddress }}</span>
+        </div>
+    </div>
+
+    <!-- Order Details Section -->
+    <div class="table-responsive mt-5 mb-5">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th class="text-center">Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items" class="data-raw">
+                    <td class="align-items-center td-img">
+                        <img [src]="item.menuItemImage" alt="Product Image" class="img-fluid item-img" width="50" />
+                    </td>
+                    <td>
+                        <span class="ml-3">{{ item.name }}</span>
+                    </td>
+                    <td>${{ item.price }}</td>
+                    <td class="align-items-center">
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-light btn-sm" (click)="updateQuantity(item, -1)">-</button>
+                            <input type="text" class="form-control form-control-sm mx-2 text-center" [value]="item.quantity" readonly style="width: 40px;" />
+                            <button class="btn btn-light btn-sm" (click)="updateQuantity(item, 1)">+</button>
+                        </div>
+                    </td>
+                    <td>${{ item.total }}</td>
+                    <td><button class="btn btn-danger btn-sm remove-item" (click)="removeItem(item)">×</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total Section -->
+    <div class="row mt-4">
+        <div class="col-md-6 w-100">
+            <div class="bg-white p-3 rounded border">
+                <table class="table table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <th class="total-label text-left total-label">Total</th>
+                            <td class="total-label"></td>
+                        </tr>
+                        <tr>
+                            <th class="text-left pricing-label">Subtotal</th>
+                            <td id="total" class="total-value text-right price-value">${{ subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left pricing-label">Total</th>
+                            <td id="subtotal" class="total-value text-right price-value">${{ subtotal }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between mt-3">
+                    <a routerLink="/order" class="btn btn-warning">Back</a>
+                    <button id="confirmOrder" class="btn btn-warning" (click)="confirmOrder()">CHECKOUT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Receipt Modal -->
+<div class="modal" id="receiptModal" style="display: none;" tabindex="-1" role="dialog" aria-labelledby="receiptModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content brd-rd5">
+            <div class="modal-header">
+                <h5 class="modal-title" id="receiptModalLabel">Receipt Details <i class="fa-solid fa-circle-check" style="color: #14ad1f;"></i></h5>
+                <button type="button" class="btn-close" (click)="closeReceiptModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="receipt-details text-center">
+                    <h4>Your Order Receipt</h4>
+                    <p [innerHTML]="receiptContent">Loading receipt details...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeReceiptModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+.wrapper {
+    min-height: 100vh; /* Ensure the row takes up at least the full viewport height */
+    display: flex;
+    align-items: center; /* Center vertically */
+    margin-top: 0 !important;
+}
+
+.form-container, .special-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center contents vertically within each container */
+}
+
+    .form-container h2, .special-container h3 {
+        font-family: 'Brush Script MT', cursive;
+    }
+
+/* Override Bootstrap styles */
+.custom-input {
+    border-radius: 0; 
+    padding-right: 4.5rem !important; 
+}
+.fa-input{
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    background-color: #000;
+    padding: 1rem;
+    min-width: 3.5rem;
+    text-align: center;
+}
+.input-icon {
+    right: 0;
+    background-color: black;
+    color: white;
+    border-radius: 0.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Ensure form container takes full height of its row for centering */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.custom-input {
+    padding-right: 1.5rem; /* Reduce padding for smaller screens */
+}
+
+.text-danger {
+    font-size: 0.875em;
+    color: #dc3545; /* Red color for error messages */
+    margin-top: 0.25rem;
+}
