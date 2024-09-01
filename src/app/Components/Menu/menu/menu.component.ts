@@ -4,6 +4,7 @@ import { MenuService } from '../../../Services/MenuService/menu.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PreloaderService } from '../../../Services/preloaderService/preloader.service';
+import { StateServiceService } from '../../../Services/StateService/state-service.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,11 +29,17 @@ export class MenuComponent implements OnInit {
     private menuService: MenuService,
     private route: ActivatedRoute,
     private router: Router,
-    private preloader: PreloaderService
+    private preloader: PreloaderService,
+    private stateService : StateServiceService
   ) { }
 
   ngOnInit(): void {
-    
+    const storedItems = localStorage.getItem('SelectedItems');
+
+    if (storedItems) {
+      this.selectedItems = JSON.parse(storedItems);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.restaurantId = +params.get('id')!;
       if (this.restaurantId > 0) {
@@ -50,6 +57,7 @@ export class MenuComponent implements OnInit {
         this.router.navigate(['/not-found']); // Handle invalid ID
       }
     });
+    
   }
 
   updatePagination(): void {
@@ -64,6 +72,11 @@ export class MenuComponent implements OnInit {
       this.updatePagination();
     }
   }
+ 
+
+  isSelected(itemId: number): boolean {
+    return this.selectedItems.some(item => item.menuItemId === itemId);
+  }
 
   onCheckboxChange(itemId: number): void {
     // Check if item is already selected
@@ -76,7 +89,6 @@ export class MenuComponent implements OnInit {
           this.selectedItems.push(item);
           // Save the selected items to localStorage
           localStorage.setItem('SelectedItems', JSON.stringify(this.selectedItems));
-          localStorage.setItem('RestaurantId', this.restaurantId.toString());
         },
         error => this.errorMessage = error
       );
@@ -84,11 +96,16 @@ export class MenuComponent implements OnInit {
       this.selectedItems.splice(index, 1);
       // Save the updated selected items to localStorage
       localStorage.setItem('SelectedItems', JSON.stringify(this.selectedItems));
-      localStorage.setItem('RestaurantId', this.restaurantId.toString());
     }
   }
 
   confirmOrder(): void {
 
+  }
+
+  ngOnDestroy(): void {
+    
+      localStorage.setItem('SelectedItems', JSON.stringify(this.selectedItems));
+    
   }
 }

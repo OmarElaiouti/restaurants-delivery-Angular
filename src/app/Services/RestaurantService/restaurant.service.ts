@@ -9,7 +9,7 @@ import { IRestaurant } from '../../Models/IRestaurant';
 })
 export class RestaurantService {
 
-  private apiUrl = 'https://orderdataapi.runasp.net/api';
+  private apiUrl = 'https://localhost:7278/api';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,14 @@ export class RestaurantService {
 
   getRestaurantsByCity(cityId: number): Observable<IRestaurant[]> {
     return this.http.get<IRestaurant[]>(`${this.apiUrl}/Restaurants/bycity?cityId=${cityId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getAllRestaurantsByCities(): Observable<ICity[]> {
+    console.log('Fetching restaurants by cities');
+    return this.http.get<ICity[]>(`${this.apiUrl}/Restaurants/cities-with-restaurants`).pipe(
+    
       catchError(this.handleError)
     );
   }

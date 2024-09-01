@@ -9,7 +9,7 @@
               <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
                 <div class="input-field brd-rd2">
                   <i class="fa fa-map-marker"></i>
-                  <select class="brd-rd2" id="citySelect" [(ngModel)]="selectedCityId" name="cityId" (change)="updateButtonState()">
+                  <select class="brd-rd2" id="citySelect" [(ngModel)]="selectedCityId" name="cityId" (change)="updateButtonState()" (change)="onCityChange()">
                     <option value="">Select City</option>
                     <option *ngFor="let city of cities" [value]="city.cityId">{{city.cityName}}</option>
                   </select>
@@ -17,7 +17,7 @@
                 </div>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
-                <button id="searchButton" class="brd-rd2 red-bg" type="submit" [disabled]="!isSearchEnabled">SEARCH</button>
+                <button id="searchButton" class="brd-rd2 red-bg" type="submit" (onclick)="updateButtonState()" >SEARCH</button>
               </div>
             </div>
           </form>

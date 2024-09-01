@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PreloaderService } from '../../../Services/preloaderService/preloader.service';
+import { StateServiceService } from '../../../Services/StateService/state-service.service';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +17,20 @@ import { PreloaderService } from '../../../Services/preloaderService/preloader.s
 export class HomeComponent {
 
   cities: ICity[] = [];
-  selectedCityId: string = '';
-  isSearchEnabled: boolean = false;
+  selectedCityId: string = "";
+  isSearchedValued: boolean = false;
   errorMessage: string = '';
 
-  constructor(private restaurantService: RestaurantService,private router: Router,private preloader: PreloaderService) { }
+  constructor(private restaurantService: RestaurantService,
+    private router: Router,
+    private preloader: PreloaderService,
+    private stateService: StateServiceService,
+  ) { }
 
 
   ngOnInit(): void {
+    this.selectedCityId = this.stateService.getSelectedCityId();
+
     this.restaurantService.getCities().subscribe({
       next: (data) => {
         this.cities = data;
@@ -34,12 +41,19 @@ export class HomeComponent {
   }
 
   updateButtonState() {
-    this.isSearchEnabled = this.selectedCityId !== '';
+    this.isSearchedValued = this.selectedCityId !== '';
+  }
+  onCityChange(): void {
+    this.stateService.setSelectedCityId(this.selectedCityId);
   }
 
   onSearch() {
     if (this.selectedCityId) {
       this.router.navigate(['/restaurant'], { queryParams: { cityId: this.selectedCityId } });
+    }
+    else{
+      this.router.navigate(['/results'], { queryParams: { city: "all" } });
+
     }
   }
 }

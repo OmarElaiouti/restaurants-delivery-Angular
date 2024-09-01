@@ -47,7 +47,7 @@
                                       </ul>
                                       <span class="post-rate yellow-bg brd-rd2"><i class="fa fa-star-o"></i> 4.25</span>
                                       <span class="post-likes style2 red-clr"><i class="fa fa-heart-o"></i> 12</span>
-                                      <a class="brd-rd30" [routerLink]="['/menu', restaurant.restaurantId]" title="See the menu">
+                                      <a class="brd-rd30" [routerLink]="['/menu', restaurant.restaurantId]" (click)="onRestaurantClick(restaurant.restaurantId)" title="See the menu">
                                           <i class="fa fa-angle-double-right"></i>MENU
                                       </a>
                                   </div>

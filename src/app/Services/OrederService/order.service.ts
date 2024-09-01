@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
 
-  private apiUrl = 'https://orderdataapi.runasp.net/api';
+  private apiUrl = 'https://localhost:7278/api';
 
   constructor(private http: HttpClient) {
   }

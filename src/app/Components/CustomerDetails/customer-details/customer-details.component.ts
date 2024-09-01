@@ -45,15 +45,26 @@ export class CustomerDetailsComponent implements OnInit {
 
   private loadData(): void {
     try {
-      const selectedItems = JSON.parse(localStorage.getItem('SelectedItems') || '[]');
+      const selectedItemsJson = localStorage.getItem('SelectedItems');
       const restaurantId = Number(localStorage.getItem('RestaurantId')) || 0;
-      if (selectedItems.length === 0 || restaurantId === 0) {
+
+      if (!selectedItemsJson || restaurantId === 0) {
         // Redirect to the home page if data is missing
         this.router.navigate(['/']);
         return;
       }
+
+      const selectedItems: IOrderItem[] = JSON.parse(selectedItemsJson);
       this.menuItems = selectedItems;
       this.restaurantId = restaurantId;
+
+      // Pre-fill form with data from localStorage if available
+      const customerDetailsJson = localStorage.getItem('orderDetails');
+      if (customerDetailsJson) {
+        const customerDetails = JSON.parse(customerDetailsJson);
+        this.customerForm.patchValue(customerDetails);
+      }
+
     } catch (error) {
       console.error('Failed to load data from localStorage', error);
     }

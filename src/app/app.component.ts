@@ -11,12 +11,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements AfterViewInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private preloader: PreloaderService, private router: Router) {
     
 
     this.router.events.subscribe(event => {
-      debugger;
+       ;
       if (event instanceof NavigationStart) {
         this.preloader.show();
       } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
@@ -26,14 +29,14 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    debugger;
+     
 
     this.preloader.hide();
   }
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: PopStateEvent) {
-    debugger;
+    
     this.preloader.show();
   }
 }

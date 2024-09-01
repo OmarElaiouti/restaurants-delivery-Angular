@@ -63,11 +63,25 @@
         color: #6c757d; /* Gray text color for disabled state */
         cursor: not-allowed !important; /* Change cursor to indicate disabled */
     }
-  
+    .uppercase {
+      text-transform: uppercase;
+    }
     .btn-process:focus {
         outline: none !important; /* Remove default focus outline */
     }
   
-    .pagination > li.prev a{
-        padding:0;
-    }
+    hr.style-two {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      margin: 4rem 0;
+  }
+
+  .link-city{
+    color: gray;
+  }
+
+  .link-city:hover{
+    cursor: pointer;
+    color: #000;
+  }

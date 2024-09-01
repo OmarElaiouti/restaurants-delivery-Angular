@@ -4,6 +4,7 @@ import { RestaurantService } from '../../../Services/RestaurantService/restauran
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PreloaderService } from '../../../Services/preloaderService/preloader.service';
+import { StateServiceService } from '../../../Services/StateService/state-service.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -20,7 +21,10 @@ export class RestaurantComponent implements OnInit {
   paginatedRestaurants: IRestaurant[] = [];
   totalPages: number = 0;
 
-  constructor(private restaurantService: RestaurantService, private route: ActivatedRoute,private preloader: PreloaderService) {}
+  constructor(private restaurantService: RestaurantService, 
+    private route: ActivatedRoute,
+    private preloader: PreloaderService,
+    private stateService: StateServiceService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -49,6 +53,13 @@ export class RestaurantComponent implements OnInit {
     this.currentPage = page;
     this.updatePaginatedRestaurants();
   }
+  onRestaurantClick(restaurantId: number): void {
+    // Set the selected restaurant ID
+    this.stateService.setSelectedRestaurantId(restaurantId);
+    localStorage.setItem('RestaurantId', restaurantId.toString());
+    localStorage.removeItem('SelectedItems');
+
+  }
 
   get isPreviousDisabled(): boolean {
     return this.currentPage === 1;
@@ -61,4 +72,6 @@ export class RestaurantComponent implements OnInit {
   get pageNumbers(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
+
+
 }

@@ -4,14 +4,14 @@ import { NgbModal, NgbModalModule, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { CommonModule } from '@angular/common';
 import { IOrderItem } from '../../Models/IOrdeItem';
 import { IMenuItem } from '../../Models/IMenuItem';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 import $ from 'jquery';
 import { PreloaderService } from '../../Services/preloaderService/preloader.service';
 
 @Component({
   selector: 'app-order-confirmation',
   standalone: true,
-  imports: [NgbModalModule,CommonModule],
+  imports: [NgbModalModule,CommonModule,RouterLink],
   templateUrl: './order-confirmation.component.html',
   styleUrl: './order-confirmation.component.css'
 })

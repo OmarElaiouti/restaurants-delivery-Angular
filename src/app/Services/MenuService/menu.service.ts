@@ -10,7 +10,7 @@ export class MenuService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://orderdataapi.runasp.net/api';
+  private apiUrl = 'https://localhost:7278/api';
 
   getMenuItems(restaurantId: number): Observable<IMenuItem[]> {
     if (restaurantId <= 0) {
