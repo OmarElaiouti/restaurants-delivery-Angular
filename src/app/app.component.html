@@ -1,2 +1,94 @@
+<div class="topbar">
+    <div class="container">
+        <div class="topbar-register">
+            @if(!isAuthenticated){
+                <a class="log-popup-btn cursor-pointer" (click)="switchtoLoginPopup()" title="Login" itemprop="url">LOGIN</a> / 
+                <a class="sign-popup-btn cursor-pointer" (click)="switchtoSigupPopup()" title="Register" itemprop="url">REGISTER</a>
+        }@else{
+                <a class="log-popup-btn cursor-pointer" (click)="logout()"  title="Logout" itemprop="url">LOGOUT</a>
+        }
+        </div>
+    </div>
+</div>
+<!-- Login Popup -->
+@if(showLoginPopup){
+    <div class="log-popup text-center"  [ngClass]="{'d-none': !showLoginPopup}">
+        <div class="sign-popup-wrapper brd-rd5">
+            <div class="sign-popup-inner brd-rd5">
+                <a class="log-close-btn" (click)="closeModals()"  title="" itemprop="url"><i class="fa fa-close"></i></a>
+                <div class="sign-popup-title text-center">
+                    <h4 itemprop="headline">SIGN IN</h4>
+                    <span>sign in & order now!</span>
+                </div>
+                
+                <form class="sign-form" (ngSubmit)="onLogin()">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="loginModel.email" name="email" type="text" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="loginModel.password" name="password" type="password" placeholder="Password" required>
+                        </div>
+                        <div *ngIf="loginError" class="error-message">
+                            {{ loginError }}
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <button class="red-bg brd-rd3" type="submit">SIGN IN</button>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <a class="sign-btn" (click)="switchtoSigupPopup()" title="" itemprop="url">Not a member? Sign up</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     }
+    
+     @if(showSignUpPopup){
+    <!-- Sign-Up Popup -->
+    <div class="sign-popup text-center" [ngClass]="{'d-none': !showSignUpPopup}" >
+        <div class="sign-popup-wrapper brd-rd5">
+            <div class="sign-popup-inner brd-rd5">
+                <a class="sign-close-btn" (click)="closeModals()"  title="" itemprop="url"><i class="fa fa-close"></i></a>
+                <div class="sign-popup-title text-center">
+                    <h4 itemprop="headline">SIGN UP</h4>
+                    <span>sign up in & order now!</span>
+                </div>
+     
+                <form class="sign-form" (ngSubmit)="onRegister()">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="registerModel.username" name="username" type="text" placeholder="Username" required>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="registerModel.email" name="email" type="email" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="registerModel.password" name="password" type="password" placeholder="Password" required>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <input class="brd-rd3" [(ngModel)]="registerModel.confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" required>
+                        </div>
+                        <div *ngIf="registerError" class="error-message">
+                            {{ registerError }}
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <button class="red-bg brd-rd3" type="submit">REGISTER NOW</button>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+                            <a class="sign-btn" (click)="switchtoLoginPopup()" title="" itemprop="url">Already Registered? Log in</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+     }
 
 <router-outlet></router-outlet> 
+
+
+
+
+

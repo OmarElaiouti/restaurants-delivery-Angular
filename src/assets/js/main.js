@@ -28,7 +28,6 @@ $(document).ready(function(){
     });
   });  
  
-  new WOW().init();
 
   $('.rating-wrapper > a').on('click',function(){
     $(this).next('.rate-share').toggleClass('active');

@@ -7,6 +7,8 @@ import { IMenuItem } from '../../Models/IMenuItem';
 import { Route, Router, RouterLink } from '@angular/router';
 import $ from 'jquery';
 import { PreloaderService } from '../../Services/preloaderService/preloader.service';
+import { AuthService } from '../../Services/AuthService/auth.service';
+import { PopupService } from '../../Services/PopupService/popup.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -31,7 +33,10 @@ export class OrderConfirmationComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private router: Router,
-    private preloader: PreloaderService
+    private preloader: PreloaderService,
+    private authService: AuthService,
+    private popupService: PopupService
+
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +80,16 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   confirmOrder(): void {
+    debugger;
+    if (!this.authService.isAuthenticated()) {
+      this.popupService.showLogin();
+      
+      return; 
+      
+    }
+
+
+
     const orderItems = this.items.map(item => ({
       MenuItemId: item.menuItemId,
       Quantity: item.quantity,
@@ -143,7 +158,7 @@ export class OrderConfirmationComponent implements OnInit {
     const modal = document.getElementById('receiptModal');
     if (modal) {
       modal.style.display = 'none';
-      localStorage.clear(); // Clear local storage
+       // Clear local storage
     this.router.navigate(['/']);
     }
   }

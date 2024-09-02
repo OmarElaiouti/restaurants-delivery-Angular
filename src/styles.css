@@ -34,6 +34,7 @@
   
   
   
+  
   .page-item:first-child .page-link,
   .page-item:last-child .page-link {
     width:8rem !important;
@@ -70,4 +71,9 @@
   
     .pagination > li.prev a{
         padding:0;
+    }
+
+
+    .row{
+      width: inherit;
     }

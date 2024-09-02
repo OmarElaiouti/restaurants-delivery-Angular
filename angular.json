@@ -43,11 +43,9 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/lib/jquery/dist/jquery.min.js",
               "src/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/assets/js/jquery.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/plugins.js",
               "src/assets/js/main.js"
             ]
           },

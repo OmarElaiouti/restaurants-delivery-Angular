@@ -22,13 +22,13 @@
                     <div *ngFor="let item of paginatedMenuItems" class="col-md-4 col-sm-6 col-lg-4 restaurant-item">
                         <div class="popular-dish-box style2">
                             <div class="popular-dish-thumb">
-                                <a href="#" title="" itemprop="url">
+                                <a title="" itemprop="url">
                                     <img [src]="'/' + item.menuItemImage" [alt]="item.name" itemprop="image">
                                 </a>
                             </div>
                             <div class="popular-dish-info">
                                 <h4 itemprop="headline">
-                                    <a href="" title="" itemprop="url">{{ item.name }}</a>
+                                    <a  title="" itemprop="url">{{ item.name }}</a>
                                 </h4>
                                 <p itemprop="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                                 <span class="price">${{ item.price }}</span>
@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- Buttons and Pagination -->
-                <div class="d-flex justify-content-between align-items-center mt-4">
+                <div class="d-flex justify-content-between align-items-center mt-4" >
                     <div class="pagination-wrapper text-center mt-4">
                         <ul class="pagination justify-content-center">
                             <li class="page-item prev" [ngClass]="{ 'disabled': currentPage === 1 }">

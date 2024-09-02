@@ -1,0 +1,17 @@
+.sign-btn{
+    cursor: pointer;
+}
+
+.error-message {
+    color: #ff0000; /* Red color for error messages */
+    font-size: 0.875rem; /* Slightly smaller font size for error messages */
+    margin-top: 0.5rem; /* Space above the error message */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center the text */
+}
+
+
+
+a{
+    cursor: pointer;
+  }
