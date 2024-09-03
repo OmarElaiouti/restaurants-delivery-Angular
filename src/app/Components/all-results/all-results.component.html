@@ -33,7 +33,7 @@
                         <div *ngFor="let restaurant of result.restaurants | slice:0:3" class="col-md-4 col-sm-6 col-lg-4 restaurant-item">
                             <div class="featured-restaurant-box with-bg style2 brd-rd12">
                                 <div class="featured-restaurant-thumb">
-                                    <a href="#" title="" itemprop="url">
+                                    <a [routerLink]="['/menu', restaurant.restaurantId]" title="" itemprop="url">
                                         <img class="restaurant-image" [src]="'/' + restaurant.restaurantImage" [alt]="restaurant.name" itemprop="image">
                                     </a>
                                 </div>
@@ -41,9 +41,9 @@
                                     <div class="featured-restaurant-info">
                                         <span class="red-clr">{{ restaurant.cityName }}</span>
                                         <h4 itemprop="headline">
-                                            <a href="#" title="" itemprop="url">{{ restaurant.name }}</a>
+                                            <a [routerLink]="['/menu', restaurant.restaurantId]" title="" itemprop="url">{{ restaurant.name }}</a>
                                         </h4>
-                                        <span class="food-types">Type of food: <a href="#" title="" itemprop="url">Apple Juice</a>, <a href="#" title="" itemprop="url">BB.Q</a></span>
+                                        <span class="food-types">Type of food: <a  title="" itemprop="url">Apple Juice</a>, <a  title="" itemprop="url">BB.Q</a></span>
                                         <ul class="post-meta">
                                             <li><i class="fa fa-check-circle-o"></i> Min order $50</li>
                                             <li><i class="flaticon-transport"></i> 30min</li>

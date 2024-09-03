@@ -7,9 +7,10 @@ import { authInterceptorInterceptor } from './Interceptors/AuthInterceptor/auth-
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),importProvidersFrom(HttpClientModule), provideAnimationsAsync(),provideHttpClient(withInterceptors(
-    [authInterceptorInterceptor]
-)) ]
-
-
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule),
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptors([authInterceptorInterceptor]))
+  ]
 };

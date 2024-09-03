@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IRestaurant } from '../../../Models/IRestaurant';
 import { RestaurantService } from '../../../Services/RestaurantService/restaurant.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PreloaderService } from '../../../Services/preloaderService/preloader.service';
 import { StateServiceService } from '../../../Services/StateService/state-service.service';
+import { filter } from 'rxjs';
+import { NavigationService } from '../../../Services/NavigationService/navigation.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -14,19 +16,30 @@ import { StateServiceService } from '../../../Services/StateService/state-servic
   styleUrl: './restaurant.component.css'
 })
 export class RestaurantComponent implements OnInit {
+
   restaurants: IRestaurant[] = [];
   errorMessage: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 3;
   paginatedRestaurants: IRestaurant[] = [];
   totalPages: number = 0;
+  private previousUrl: string | null = null;
 
   constructor(private restaurantService: RestaurantService, 
     private route: ActivatedRoute,
     private preloader: PreloaderService,
-    private stateService: StateServiceService) {}
+    private stateService: StateServiceService,
+    private router: Router,
+    private navigationService: NavigationService) {
+
+
+      
+
+    }
 
   ngOnInit(): void {
+    this.previousUrl = this.navigationService.getPreviousUrl();
+
     this.route.queryParams.subscribe(params => {
       const cityId = +params['cityId'];
       if (cityId) {
@@ -54,10 +67,11 @@ export class RestaurantComponent implements OnInit {
     this.updatePaginatedRestaurants();
   }
   onRestaurantClick(restaurantId: number): void {
-    // Set the selected restaurant ID
+    debugger;
+    localStorage.removeItem('SelectedItems');
     this.stateService.setSelectedRestaurantId(restaurantId);
     localStorage.setItem('RestaurantId', restaurantId.toString());
-    localStorage.removeItem('SelectedItems');
+    
 
   }
 
@@ -73,5 +87,11 @@ export class RestaurantComponent implements OnInit {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
-
+  goBack(): void {
+    if (this.previousUrl?.includes('results') || this.previousUrl === '/') {
+      this.router.navigate(['/results']);
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 }

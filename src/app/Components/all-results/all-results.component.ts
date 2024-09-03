@@ -5,6 +5,7 @@ import { PreloaderService } from '../../Services/preloaderService/preloader.serv
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CapitalizeFirstPipe } from '../../Pipes/capitalizeFirst/capitalize-first.pipe';
+import { NavigationService } from '../../Services/NavigationService/navigation.service';
 
 @Component({
   selector: 'app-all-results',
@@ -17,13 +18,21 @@ export class AllResultsComponent {
   results: ICity[] = [];
   errorMessage: string = '';
 
-  constructor(private restaurantService: RestaurantService,private router: Router, private route: ActivatedRoute,private preloader: PreloaderService) {}
+  constructor(private restaurantService: RestaurantService,
+    private router: Router, private route: ActivatedRoute,
+    private preloader: PreloaderService,
+    private navigationService: NavigationService) {}
 
   ngOnInit(): void {
-   
+    const currentUrl = this.router.url;
+
+
+    this.navigationService.setCurrentUrl(currentUrl);
+
+
+
         this.restaurantService.getAllRestaurantsByCities().subscribe({
           next: (data) => {
-            console.log("jjjjj")
             this.results = data;
           },
           error: (error) => this.errorMessage = error

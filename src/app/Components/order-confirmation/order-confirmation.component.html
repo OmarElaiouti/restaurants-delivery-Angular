@@ -87,7 +87,7 @@
                 </table>
                 <div class="d-flex justify-content-between mt-3">
                     <a [routerLink]="['/customer-details']" class="btn btn-warning">Back</a>
-                    <button id="confirmOrder" class="btn btn-warning" (click)="confirmOrder()">CHECKOUT</button>
+                    <button id="confirmOrder" class="btn btn-warning" (click)="confirmOrder()" [disabled]="isButtonDisabled">CHECKOUT</button>
                 </div>
             </div>
         </div>

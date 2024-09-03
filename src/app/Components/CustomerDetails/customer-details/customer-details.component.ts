@@ -66,7 +66,6 @@ export class CustomerDetailsComponent implements OnInit {
       }
 
     } catch (error) {
-      console.error('Failed to load data from localStorage', error);
     }
   }
 

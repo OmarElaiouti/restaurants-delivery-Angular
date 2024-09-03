@@ -26,7 +26,6 @@ export class RestaurantService {
   }
 
   getAllRestaurantsByCities(): Observable<ICity[]> {
-    console.log('Fetching restaurants by cities');
     return this.http.get<ICity[]>(`${this.apiUrl}/Restaurants/cities-with-restaurants`).pipe(
     
       catchError(this.handleError)
@@ -34,15 +33,7 @@ export class RestaurantService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // Server-side error
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
+    
     // Return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');

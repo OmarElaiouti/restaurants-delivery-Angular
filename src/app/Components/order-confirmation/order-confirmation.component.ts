@@ -26,6 +26,7 @@ export class OrderConfirmationComponent implements OnInit {
   total: number = 0;
   subtotal: number = 0;
   receiptContent: string = '';
+  isButtonDisabled = false;
 
   constructor(
     private orderService: OrderService,
@@ -80,7 +81,6 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   confirmOrder(): void {
-    debugger;
     if (!this.authService.isAuthenticated()) {
       this.popupService.showLogin();
       
@@ -88,7 +88,7 @@ export class OrderConfirmationComponent implements OnInit {
       
     }
 
-
+this.isButtonDisabled = true;
 
     const orderItems = this.items.map(item => ({
       MenuItemId: item.menuItemId,
@@ -143,7 +143,7 @@ export class OrderConfirmationComponent implements OnInit {
         this.openReceiptModal();
       }
     }, error => {
-      console.error('Error submitting order:', error);
+      this.isButtonDisabled = false;
     });
   }
 

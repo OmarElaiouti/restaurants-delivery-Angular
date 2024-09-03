@@ -41,7 +41,7 @@
               </div>
               <div class="col-md-6">
                 <div class="position-relative">
-                  <input formControlName="customerAddress" class="form-control custom-input pl-4" placeholder="Address" />
+                  <textarea formControlName="customerAddress" class="form-control custom-input pl-4" placeholder="Address" rows="1" ></textarea>
                   <i class="fa-solid fa-location-dot position-absolute fa-input"></i>
                 </div>
                 <div *ngIf="customerForm.get('customerAddress')?.errors && (customerForm.get('customerAddress')?.touched || customerForm.get('customerAddress')?.dirty)" class="text-danger">

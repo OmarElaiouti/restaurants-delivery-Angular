@@ -33,7 +33,6 @@ export class MenuService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error.error);
     return throwError('Something went wrong; please try again later.');
   }
 }
